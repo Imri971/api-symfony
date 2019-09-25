@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GeoController!{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-3">Les villes de la Guadeloupe</h1>
+    <table class="table">
+
+    <thead >
+        <th>Ville</th>
+        <th>Departement</th>
+        <th>Code postal</th>
+        <th>Population</th>
+     </thead>
+
+    <tbody>
+    {% for commune in communes %}
+        <tr>
+            <td>{{commune.nom}}</td>
+            <td>
+                
+            {% for dep in departements %}
+                {% if commune.codeDepartement == dep.code %}
+                    {{dep.nom}} ({{commune.codeDepartement }})
+                {% endif %}
+                
+           
+         {% endfor %}
+         </td>
+            <td> {% for code in commune.codesPostaux %}
+                {{code}}
+            {% endfor %} </td>
+            <td>{{commune.population}} habitants</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+   
+    
+{% endblock %}
